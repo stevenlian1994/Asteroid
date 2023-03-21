@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     private float respawnTime = 3.0f;
     private float respawnInvulnerabilityTime = 3.0f;
+
+    public TextMeshProUGUI livesText;
+    public TextMeshProUGUI scoreText;
+
 
     public int score = 0;
     public void AsteroidDestroyed(Asteroid asteroid){
@@ -55,5 +60,11 @@ public class GameManager : MonoBehaviour
         this.score = 0;
 
         Invoke(nameof(Respawn), this.respawnTime);
+    }
+
+    private void Update(){
+        scoreText.text = "SCORE: " + Mathf.RoundToInt(score).ToString();
+        livesText.text = "LIVES: " + Mathf.RoundToInt(lives).ToString();
+
     }
 }
